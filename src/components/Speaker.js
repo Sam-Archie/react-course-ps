@@ -21,6 +21,7 @@ const SpeakerImage = ({ id, first, last }) => {
         className="contain-fit"
         src={`/images/speaker-${id}.jpg`}
         width="300"
+        alt={`${first} ${last}`}
       />
     </div>
   );
@@ -37,14 +38,22 @@ const SpeakerDemographic = ({
   return (
     <div className="speaker-info">
       <div className="d-flex justify-content-between mb-3">
-        <h3>
+        <h3 className="text-truncate w-200">
           {first} {last}
         </h3>
       </div>
       <div>
-        <p>
-          {bio} {company} {twitterHandle} {favorite}
-        </p>
+        <p className="card-description">{bio}</p>
+        <div className="social d-flex flex-row mt-4">
+          <div className="company">
+            <h5>Company</h5>
+            <h6>{company}</h6>
+          </div>
+          <div className="twitter">
+            <h5>Twitter</h5>
+            <h6>{twitterHandle}</h6>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -57,8 +66,8 @@ const Speaker = ({ speaker }) => {
       <div className="card card-height p-4 mt-4">
         <SpeakerImage id={id} first={first} last={last} />
         <SpeakerDemographic {...speaker} />
-        <Sessions sessions={sessions} />
       </div>
+      <Sessions sessions={sessions} />
     </div>
   );
 };
